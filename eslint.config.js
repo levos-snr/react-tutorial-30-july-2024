@@ -16,7 +16,15 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["**/dist", "commitlint.config.cjs"],
+    ignores: [
+      "**/dist",
+      "commitlint.config.cjs",
+      "/.cache",
+      "/.git",
+      "/.husky",
+      "/.yarn",
+      "/.bun",
+    ],
   },
   ...fixupConfigRules(
     compat.extends(
@@ -24,6 +32,7 @@ export default [
       "plugin:react/recommended",
       "plugin:react/jsx-runtime",
       "plugin:react-hooks/recommended",
+      "prettier",
     ),
   ).map((config) => ({
     ...config,
