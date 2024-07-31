@@ -2,10 +2,10 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "react/starter" ]
+    branches: ["react/starter"]
   pull_request:
-    branches: [ "react/starter" ]
-  
+    branches: ["react/starter"]
+
 jobs:
   analyze:
     name: Analyze
@@ -14,36 +14,32 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-          language: [ 'javascript', 'python','typescript' ]
-  
-    steps:
-    - name: Code Language 
-      run: echo ${{ matrix.language }}
-      
-    - name: Checkout repository
-      uses: actions/checkout@v4
+        language: ["javascript", "python", "typescript"]
 
-    # setup nodejs
-    - name: Setup Node for Python or JS Only
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        config: |
+    steps:
+      - name: Code Language
+        run: echo ${{ matrix.language }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # setup nodejs
+      - name: Setup Node for Python or JS Only
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+          config: |
             paths-ignore:
               - /data/static/codefixes/*.ts
-       
 
-    # Perform analysis and upload result back to GitHub
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3
-      with:
-        category: "javascript-typescript"
-        
-        
-        
+      # Perform analysis and upload result back to GitHub
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "javascript-typescript"
