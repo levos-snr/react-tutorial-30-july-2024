@@ -2,9 +2,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "react/starter" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "react/starter" ]
   
 jobs:
   analyze:
@@ -13,8 +13,13 @@ jobs:
 
     strategy:
       fail-fast: false
+      matrix:
+          language: [ 'javascript', 'python','typescript' ]
   
     steps:
+    - name: Code Language 
+      run: echo ${{ matrix.language }}
+      
     - name: Checkout repository
       uses: actions/checkout@v4
 
@@ -28,7 +33,10 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v3
       with:
-        languages: javascript-typescript
+        languages: ${{ matrix.language }}
+        config: |
+            paths-ignore:
+              - /data/static/codefixes/*.ts
        
 
     # Perform analysis and upload result back to GitHub
@@ -36,98 +44,6 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "javascript-typescript"
-    name: "Code Scanning using CodeQL"
-  
-  on:
-    push:
-      branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
-    
-  jobs:
-    analyze:
-      name: Analyze
-      runs-on: self-hosted
-  
-      strategy:
-        fail-fast: false
-        matrix:
-          language: [ 'javascript', 'python' ]
-    
-      steps:
-      - name: Code Language 
-        run: echo ${{ matrix.language }}
-      
-      - name: Checkout repository
-        uses: actions/checkout@v4
-  
-      # setup nodejs
-      - name: Setup Node for Python or JS Only
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      
-      # Initializes the CodeQL tools for scanning.
-      # ignore some files
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-          config: |
-              paths-ignore:
-                - /data/static/codefixes/*.ts
-         
-  
-     # Perform analysis and upload result back to GitHub
-     - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
-
-    name: "Code Scanning using CodeQL"
-  
-  on:
-    push:
-      branches: [ "main" ]
-    pull_request:
-      branches: [ "main" ]
-    
-  jobs:
-    analyze:
-      name: Analyze
-      runs-on: self-hosted
-  
-      strategy:
-        fail-fast: false
-        matrix:
-          language: [ 'javascript', 'python' ]
-    
-      steps:
-      - name: Code Language 
-        run: echo ${{ matrix.language }}
-      
-      - name: Checkout repository
-        uses: actions/checkout@v4
-  
-      # setup nodejs
-      - name: Setup Node for Python or JS Only
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      
-      # Initializes the CodeQL tools for scanning.
-      # ignore some files
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-          config: |
-              paths-ignore:
-                - /data/static/codefixes/*.ts
-         
-  
-      # Perform analysis and upload result back to GitHub
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
+        
+        
+        
