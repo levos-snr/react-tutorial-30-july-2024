@@ -8,6 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Why React project structure
+
 - Project structure shows the organization of code and files, and a clean, simple,
   and decent project structure shows a clean written code, which helps to debug code,
   and another developer can easily read it.
@@ -38,6 +39,7 @@ Currently, two official plugins are available:
   This structure is easy to navigate and understand.
 
 ## Conclusion
+
 - Creating a well-organized folder structure is important for maintaining
   a React project. It increases readability, maintainability, and
   scalability of the application. By adopting a well structure, it will
