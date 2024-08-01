@@ -1,3 +1,5 @@
+import { Button } from "./components/ui/button";
+
 const App = () => {
   return (
     <div>
@@ -7,6 +9,9 @@ const App = () => {
       >
         My React App Stater
       </h1>
+      <Button variant="destructive" size="lg" className="mt-5">
+        Click Me
+      </Button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
-module.exports = {
+// commitlint.config.mjs
+export default {
   extends: ["@commitlint/config-conventional"],
   rules: {
-    //   TODO Add Scope Enum Here
     "type-enum": [
       2,
       "always",

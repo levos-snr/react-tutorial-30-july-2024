@@ -16,15 +16,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: [
-      "**/dist",
-      "commitlint.config.cjs",
-      "/.cache",
-      "/.git",
-      "/.husky",
-      "/.yarn",
-      "/.bun",
-    ],
+    ignores: ["**/dist", "/.cache", "/.git", "/.husky", "/.yarn", "/.bun"],
   },
   ...fixupConfigRules(
     compat.extends(
